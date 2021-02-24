@@ -53,3 +53,10 @@ header {
   flex-direction: column;
   width: 100%;
 }
+.MdEditor .custom-html-style pre {
+  border-radius: 10px;
+}
+.MdEditor .custom-html-style code,.MdEditor .custom-html-style pre {
+  background-color: #282b2e;
+  color:white;
+}

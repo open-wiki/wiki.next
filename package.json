@@ -11,18 +11,16 @@
     "@octokit/auth-app": "^3.0.0",
     "@octokit/rest": "^18.2.0",
     "@types/react-dom": "^16.0.0",
+    "markdown-it": "^12.0.4",
     "next": "10.0.7",
     "react": "^16.0.1",
     "react-dom": "^16.0.1",
-    "react-markdown": "^5.0.3",
     "react-markdown-editor-lite": "^1.2.4",
-    "react-router-dom": "^5.2.0",
-    "remark-gfm": "^1.0.0"
+    "react-router-dom": "^5.2.0"
   },
   "devDependencies": {
     "@types/node": "^14.14.31",
     "@types/react": "^16.0.0",
-    "dotenv": "^8.2.0",
     "typescript": "^4.1.5"
   }
 }
