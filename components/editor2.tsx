@@ -1,15 +1,30 @@
 import * as React from "react";
 import "react-dom";
-import Editor from "react-markdown-editor-lite";
-import "react-markdown-editor-lite/lib/index.css";
 import MarkDownIt from 'markdown-it';
 import hljs from 'highlight.js'
 import 'highlight.js/styles/atom-one-dark.css'
 import styles from '../styles/mdEditor.module.css'
 import sampleMD from '../articles/sample.md'
 import matter from 'gray-matter'
+import dynamic from "next/dynamic";
 
-export default function MdEditor() {
+export default function SimpleEditor() {
+    // const SimpleMDE = dynamic(() => import('simplemde'), {
+    //     ssr: false
+    // });
+
+    // import('simplemde').then((simpleMDE) => {
+    //     let simplemde = new SimpleMDE({ element: document.getElementById('editor')})
+    // })
+
+    var ww = dynamic(() =>
+        import('simplemde').then((mod) => new mod.SimpleMDE({
+            placeholder:"text",
+            initialValue: "hello world",
+            element: document.getElementById('test')
+        }))
+    )
+
     const mdEditor = React.useRef(null);
     const [state, setState] = React.useState({
         articleTitle: matter(sampleMD).data.title,
@@ -86,14 +101,7 @@ export default function MdEditor() {
                 <TitleInput />
                 <button onClick={saveArticle}>Save</button>
             </div>
-            <Editor
-                placeholder={"Start typing your article"}
-                name={"articleContent"}
-                ref={mdEditor}
-                value={articleContent}
-                onChange={handleEditorChange}
-                renderHTML={(text) => mdParser.render(text)}
-            />
+            <textarea id={'test'} />
         </div>
     )
 }

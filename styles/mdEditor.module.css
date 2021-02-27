@@ -1,0 +1,24 @@
+
+.MdEditor, .rc-md-editor {
+    display: flex;
+    flex-grow: 1;
+    flex-direction: column;
+    width: 100%;
+}
+.MdEditor .custom-html-style pre {
+    border-radius: 10px;
+}
+.MdEditor .custom-html-style code,.MdEditor .custom-html-style pre {
+    background-color: #282b2e;
+    color:white;
+}
+.titleInput {
+    width: 100%;
+    height: 60px;
+    border: 2px solid lightgrey;
+    border-radius: 5px;
+    font-size: 28px;
+    font-weight: bold;
+    margin: 10px 0;
+    padding: 10px 20px;
+}

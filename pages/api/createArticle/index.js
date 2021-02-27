@@ -13,18 +13,19 @@ const octokit = new Octokit({
 });
 
 export default async (req, res) => {
+  const article = JSON.parse(req.body);
   let createOrUpdateFileContentsParams = {
     owner: 'open-wiki',
     repo: 'wiki-bot',
-    path: 'test.md',
+    path: article.title + '.md',
     message: 'created by probot',
-    content: Buffer.from('# test content').toString('base64'),
+    content: Buffer.from(article.content).toString('base64'),
   }
   try {
     await octokit.repos.getContent({
       owner: 'open-wiki',
       repo: 'wiki-bot',
-      path: 'test.md',
+      path: article.title + '.md',
     })
         .then((existingPage) => {
           createOrUpdateFileContentsParams.sha = existingPage.data.sha;
