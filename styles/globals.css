@@ -106,4 +106,8 @@ header {
 .MdEditor .custom-html-style code,.MdEditor .custom-html-style pre {
   background-color: #282b2e;
   color:white;
+  font-family: monospace;
+}
+.MdEditor .custom-html-style code {
+  padding: 3px;
 }

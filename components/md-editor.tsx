@@ -8,6 +8,7 @@ import 'highlight.js/styles/atom-one-dark.css'
 import styles from '../styles/mdEditor.module.css'
 import sampleMD from '../articles/sample.md'
 import matter from 'gray-matter'
+import {useState} from "react";
 
 export default function MdEditor() {
     const mdEditor = React.useRef(null);
@@ -15,15 +16,15 @@ export default function MdEditor() {
         articleTitle: matter(sampleMD).data.title,
         articleContent: matter(sampleMD).content,
     });
+    const [articleTitle, setArticleTitle] = useState(matter(sampleMD).data.title,)
 
     const saveArticle = () => {
         if (mdEditor.current) {
-            // @ts-ignore
             alert(mdEditor.current.getMdValue());
             fetch('/api/createArticle', {
                 method: 'POST',
                 body: JSON.stringify({
-                    title: state.articleTitle,
+                    title: articleTitle,
                     content: state.articleContent
                 }),
             })
@@ -39,12 +40,6 @@ export default function MdEditor() {
             [evt.target.name]: value
         });
     };
-    // const handleTitleChange = ({html, text}: any) => {
-    //     const newTitleValue = text.replace(/\d/g, "");
-    //     console.log('1' + newTitleValue);
-    //     setTitleValue(newTitleValue);
-    // };
-    //
     const handleEditorChange = ({html, text}: any) => {
         setState({
             ...state,
@@ -66,31 +61,25 @@ export default function MdEditor() {
         },
 
     });
-    const { articleTitle, articleContent } = state
-    const TitleInput = () => {
-        return(
-            <input
-                className={styles.titleInput}
-                type={"text"}
-                name={"articleTitle"}
-                placeholder={"Pick a title for your article"}
-                onChange={handleChange}
-                value={articleTitle}
-                key={"articleTitle"}
-            />
-        );
-    }
     return (
         <div className={"MdEditor"}>
             <div>
-                <TitleInput />
+                <input
+                    className={styles.titleInput}
+                    type={"text"}
+                    name={"articleTitle"}
+                    placeholder={"Pick a title for your article"}
+                    onChange={handleChange}
+                    value={state.articleTitle}
+                    key={"articleTitle"}
+                />
                 <button onClick={saveArticle}>Save</button>
             </div>
             <Editor
                 placeholder={"Start typing your article"}
                 name={"articleContent"}
                 ref={mdEditor}
-                value={articleContent}
+                value={state.articleContent}
                 onChange={handleEditorChange}
                 renderHTML={(text) => mdParser.render(text)}
             />
