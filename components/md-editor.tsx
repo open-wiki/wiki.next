@@ -16,7 +16,6 @@ export default function MdEditor() {
         articleTitle: matter(sampleMD).data.title,
         articleContent: matter(sampleMD).content,
     });
-    const [articleTitle, setArticleTitle] = useState(matter(sampleMD).data.title,)
 
     const saveArticle = () => {
         if (mdEditor.current) {
@@ -24,7 +23,7 @@ export default function MdEditor() {
             fetch('/api/createArticle', {
                 method: 'POST',
                 body: JSON.stringify({
-                    title: articleTitle,
+                    title: state.articleTitle,
                     content: state.articleContent
                 }),
             })
