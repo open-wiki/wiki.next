@@ -2,9 +2,6 @@ import Head from 'next/head'
 import styles from '../styles/Home.module.css'
 import dynamic from "next/dynamic";
 import React from 'react';
-import SimpleEditor from "../components/editor2";
-import Editor from "react-markdown-editor-lite";
-// import MdEditor from "../components/md-editor";
 
 const MdEditor = dynamic(() => import("../components/md-editor"), { ssr: false })
 
@@ -29,9 +26,7 @@ export default function Home() {
                 <h1>Open wiki</h1>
             </header>
             <main className="main">
-                  {!isSSR && (
-                      <MdEditor />
-                  )}
+                <p>articles go here</p>
             </main>
         </div>
     )

@@ -1,6 +1,3 @@
-// Next.js API route support: https://nextjs.org/docs/api-routes/introduction
-//
-
 const {createAppAuth} = require("@octokit/auth-app");
 const {Octokit} = require('@octokit/rest')
 const octokit = new Octokit({

@@ -1,6 +1,6 @@
 import * as React from "react";
 import "react-dom";
-import Editor from "react-markdown-editor-lite";
+import Editor, { Plugins } from "react-markdown-editor-lite";
 import "react-markdown-editor-lite/lib/index.css";
 import MarkDownIt from 'markdown-it';
 import hljs from 'highlight.js'
@@ -20,7 +20,7 @@ export default function MdEditor() {
     const saveArticle = () => {
         if (mdEditor.current) {
             alert(mdEditor.current.getMdValue());
-            fetch('/api/createArticle', {
+            fetch('/api/article', {
                 method: 'POST',
                 body: JSON.stringify({
                     title: state.articleTitle,
@@ -60,6 +60,10 @@ export default function MdEditor() {
         },
 
     });
+    // Editor.use(Plugins.AutoResize, {
+    //     min: 200,
+    //     max: 600,
+    // })
     return (
         <div className={"MdEditor"}>
             <div>
